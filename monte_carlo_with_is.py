@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 
 def generate_SAW_Rosenbluth(L):
     """
@@ -43,7 +44,34 @@ def monte_carlo_II(L, trials=100000):
 # Example: Estimate c_L and the success ratio for L = 20 using the Rosenbluth algorithm.
 L = 20
 estimated_cL, success_ratio = monte_carlo_II(L, trials=100000)
-print(f"Monte Carlo II (Rosenbluth): L = {L}, estimated c_L ≈ {estimated_cL:.2f}, success ratio ≈ {success_ratio:.6f}")
+mu = estimated_cL**(1/L)
+print(f"Monte Carlo II (Rosenbluth): L = {L}, estimated c_L ≈ {estimated_cL:.2f}, eatimated mu ≈ {mu:.6f}, success ratio ≈ {success_ratio:.6f}")
 
+# Draw a plot of the estimated mu and success ratio as a function of L.
+L_values = list(range(1, 31))
+mu_values = []
+success_ratios = []
+for L in L_values:
+    # Perform Monte Carlo simulation for each L with 100,000 trials.
+    estimated_cL, success_ratio = monte_carlo_II(L, trials=100000)
+    mu = estimated_cL**(1/L)
+    mu_values.append(mu)
+    success_ratios.append(success_ratio)
 
-# 实际大小：897697164
+fig, ax1 = plt.subplots()
+
+color = 'tab:red'
+ax1.set_xlabel('L')
+ax1.set_ylabel('Success ratio', color=color)
+ax1.plot(L_values, success_ratios, color=color, marker='o')
+ax1.tick_params(axis='y', labelcolor=color)
+
+ax2 = ax1.twinx()
+color = 'tab:blue'
+ax2.set_ylabel('mu', color=color)
+ax2.plot(L_values, mu_values, color=color, marker='x')
+ax2.tick_params(axis='y', labelcolor=color)
+
+fig.tight_layout()
+plt.title("Monte Carlo II (Rosenbluth): Estimated cL and mu")
+plt.show()

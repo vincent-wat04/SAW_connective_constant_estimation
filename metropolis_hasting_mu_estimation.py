@@ -56,13 +56,13 @@ def metropolis_hasting_SAW(steps, mu):
             # try growing saw
             new_saw = grow_saw(saw)
             if new_saw:
-                accept_prob = min(1, 1 / mu)
+                accept_prob = min(1, 3 / mu)
                 if random.random() < accept_prob:
                     saw = new_saw
         else:
             # try shrinking saw
             new_saw = shrink_saw(saw)
-            accept_prob = min(1, mu)
+            accept_prob = min(1, mu / 3)    
             if random.random() < accept_prob:
                 saw = new_saw
 
@@ -80,8 +80,9 @@ average_length = np.mean(lengths)
 print(f"average SAW length: {average_length:.2f}")
 
 # estimate mu
-estimated_mu = np.exp(1 / average_length)
-print(f"estimated growth constant μ: {estimated_mu:.5f}")
+# TODO: implement the estimation of mu
+# estimated_mu = np.exp(1 / average_length)
+# print(f"estimated growth constant μ: {estimated_mu:.5f}")
 
 # plot SAW length distribution
 plt.hist(lengths, bins=50, density=True, alpha=0.7, color="blue")
