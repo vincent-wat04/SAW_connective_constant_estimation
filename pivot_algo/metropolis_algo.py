@@ -79,23 +79,3 @@ def metropolis_SAW(L, steps, equilibration=1000):
     
     acceptance_ratio = accepted / steps
     return configurations, acceptance_ratio
-
-# Example simulation parameters
-L = 30
-steps = 50000
-
-configs, acc_ratio = metropolis_SAW(L, steps)
-print("Metropolis acceptance ratio:", acc_ratio)
-
-# Plot a sample SAW configuration
-sample = random.choice(configs)
-x_vals = [p[0] for p in sample]
-y_vals = [p[1] for p in sample]
-
-plt.figure(figsize=(6,6))
-plt.plot(x_vals, y_vals, marker='o')
-plt.title(f"SAW Sample from Metropolis Algorithm (L = {L})")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.grid(True)
-plt.show()

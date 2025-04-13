@@ -69,7 +69,6 @@ def metropolis_hasting_SAW(steps, mu):
         lengths.append(len(saw))
     
     return lengths
-    
 
 # Run Grand Canonical sampling
 steps = 100000
@@ -78,11 +77,6 @@ lengths = metropolis_hasting_SAW(steps, mu)
 
 average_length = np.mean(lengths)
 print(f"average SAW length: {average_length:.2f}")
-
-# estimate mu
-# TODO: implement the estimation of mu
-# estimated_mu = np.exp(1 / average_length)
-# print(f"estimated growth constant μ: {estimated_mu:.5f}")
 
 # plot SAW length distribution
 plt.hist(lengths, bins=50, density=True, alpha=0.7, color="blue")
