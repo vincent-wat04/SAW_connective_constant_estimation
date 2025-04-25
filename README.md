@@ -5,9 +5,10 @@ This repository implements advanced Monte Carlo methods for studying self-avoidi
 - Naive Monte Carlo
 - Rosenbluth Method (Importance Sampling)
 - PERM (Pruned-Enriched Rosenbluth Method), both CPU and GPU-accelerated versions
-- Pivot algorithms (Markov Chain Monte Carlo)
-  - Canonical sampling techniques (Metropolis algorithm)
-  - Grand canonical sampling techniques (Metropolis Hasting algorithm)
+- Pivot algorithms (Markov Chain Monte Carlo, Metropolis Hastings Algorithm)
+  - Using Atmosphere statistics
+  - Recursive method
+
 
 Key innovations include adaptive memory management, optimized collision detection, and parallelized sampling on GPU.
 
@@ -25,11 +26,14 @@ Key innovations include adaptive memory management, optimized collision detectio
   Visualization of exponential attrition (fails beyond L≈30)
 
 ### /pivot_algo
-- `Pivot_algorithm.ipynb`  
-  Jupyter notebook implementing 3 types of pivot algorithms efficient for connective constant estimation:  
+- `Pivot_algorithm_CPU_atmosphere+recursive.ipynb`  
+  Jupyter notebook implementing 2 types of pivot algorithms using CPU:  
   - Sampling using atmosphere as statistics
-  - Telescoping method
-  - Recursive method 
+  - Recursive method
+- `Pivot_algorithm_GPU_atmosphere+recursive.ipynb`  
+  Jupyter notebook implementing 2 types of pivot algorithms using GPU:  
+  - Sampling using atmosphere as statistics
+  - Recursive method
 - `metropolis_algo.py`  
   Core Metropolis acceptance logic  
 
@@ -39,12 +43,11 @@ Key innovations include adaptive memory management, optimized collision detectio
 - `Rosenbluth_to_PERM_CPU.ipynb`  
   CPU implementation featuring:  
   - Dynamic pruning/enrichment thresholds  
-  - Recursive SAW-tree structures  
 - `Rosenbluth_to_PERM_GPU.ipynb`  
   CUDA-accelerated version with:  
   - Adaptive local/global memory switching
   - Batch sampling
-  - Grid-optimized collision detection (3x speedup)
+  - Grid-optimized collision detection
 
 ---
 
